@@ -17,10 +17,6 @@ public class Selenium {
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "/Users/jeongseok/Downloads/chromedriver";
 
-    public static void main(String[] args) {
-       Selenium selenium = new Selenium();
-    }
-
     public Selenium() {
 
         selenium_init();
