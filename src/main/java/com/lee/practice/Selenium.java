@@ -8,11 +8,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Selenium {
 
+    private String kakaourl = "https://accounts.kakao.com/login?continue=https%3A%2F%2Flogins.daum.net%2Faccounts%2Fksso.do%3Frescue%3Dtrue%26url%3Dhttps%253A%252F%252Fwww.daum.net%252F";
+
     //WebDriver
     private WebDriver driver;
-    private WebElement element;
-
-    private String kakaourl = "https://accounts.kakao.com/login?continue=https%3A%2F%2Flogins.daum.net%2Faccounts%2Fksso.do%3Frescue%3Dtrue%26url%3Dhttps%253A%252F%252Fwww.daum.net%252F";
 
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "/Users/jeongseok/Downloads/chromedriver";
@@ -20,7 +19,11 @@ public class Selenium {
     public Selenium() {
 
         selenium_init();
+        execute_selenium();
 
+    }
+
+    private void execute_selenium() {
         try {
             login();
             Thread.sleep(1000);
@@ -45,15 +48,10 @@ public class Selenium {
     public void login() {
         driver.get(kakaourl);
 
-        element = driver.findElement(By.id("id_email_2"));
-        element.sendKeys("test");
+        driver.findElement(By.id("id_email_2")).sendKeys("ID");
+        driver.findElement(By.id("id_password_3")).sendKeys("PW");
+        driver.findElement(By.className("btn_g")).click();
 
-        //패스워드 입력
-        element = driver.findElement(By.id("id_password_3"));
-        element.sendKeys("test");
-
-        element = driver.findElement(By.className("btn_g"));
-        element.click();
     }
 
     public void go_to_mail() {
@@ -62,7 +60,6 @@ public class Selenium {
 
 
     public void delete_spam_mail() {
-
         driver.findElement(By.xpath("//*[@id=\"mailToolbar\"]/div/div/div[1]/label")).click();
         driver.findElement(By.xpath("//*[@id=\"mailToolbar\"]/div/div/div[2]/button[1]")).click();
     }
